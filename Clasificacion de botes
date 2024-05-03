@@ -1,41 +1,35 @@
 import pandas as pd
-from flask import Flask
+#from flask import Flask
 
-app=Flask(__name__)
+#app=Flask(_name_)
 
 base=pd.read_excel("Clasificacion de botes.xlsx")
 
-@app.route("/")
+#@app.route("/")
 def Principal():
-  return "Esta es una Api que te muestra canciones de aurora"
+    return "Esta es una Api que te muestra los botes de la facultad"
 
-@app.route ("/Por_Numero/<Numero>")
-def PorNumero (Numero):
-  Numero=int(numero)
-  fila=base[base["Numero"]==Numero]
-@app.route("/Por_Geolocalizacion/<Longitud>/<Latitud>")
-def PorGeolocalizacion(Longitud,Latitud):
-  Longitud=float(Longitud)
-  Latitud=float(Latitud)
-  resultados=base[(base["Geolocalizacion"]>Longitud) & (base [Geolocalizacion]<Latitud)]
-  resultados=str(resultados)
-  return resultados
-
-  if __name__=="__main__":
-    app.run()
-@app.route ("/Por_Numero/<Numero>")
-def PorNumero(Numero):
-  Numero=int(Numero)
-  fila=base[base["Numero"]==Numero]
-  respuestas=f"El bote {Numero} es {fila.loc[:,'Nombre']}"
+#@app.route("/Por_Tipo/<Tipo>")
+def PorTipo(Tipo):
+  fila=base[base["Tipo"]==Tipo]
+  respuesta=f"El tipo de bote es {fila.loc[:,'Tipo']}"
   return respuesta
 
-@app.route("/Por_Tipo/<Tipo>")
-def PorTipo(Tipo):
-  resultados=base[base["Tipo"]==Tipo]
+print (PorTipo('Botellas de PET'))
+
+#@app.route("/Por_Numero/<Numero>")
+def PorNumero(Numero):
+  Ubicacion=int(Numero)
+  resultados=base[base["Longitud"]==Numero]
   resultados=str(resultados)
   return resultados
 
-@app.route("/Por_Geolocalizacion/<Longitud>/<Latitud>")
-def PorGeolocalizacion(Longitud,Latitud):
+print (PorNumero(7))
 
+#@app.route("/Por_Tamaño/<Tamaño>")
+def PorTamaño(Tamaño):
+  resultados=base[base["Tamaño"]==Tamaño]
+  resultados=str(resultados)
+  return resultados
+
+print (PorTamaño('Grande'))
