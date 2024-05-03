@@ -1,4 +1,4 @@
 flask
 gunicorn
 pandas
-openpyx
+openpyx1
